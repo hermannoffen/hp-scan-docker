@@ -1,0 +1,42 @@
+#!/usr/bin/expect -f
+
+# Copyright (C) 2025 René Hoffmann
+# 
+# This file is part of hp-scan-docker.
+# 
+# hp-scan-docker is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# hp-scan-docker is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with hp-scan-docker.  If not, see <https://www.gnu.org/licenses/>.
+
+
+# TODO:
+# a) make the duration configurable; e.g. to increase for slower download connections
+#  OR
+# b) let the user provide a pre-downloaded plugin version
+
+
+# Wait at max 5 minutes for completion.
+set timeout 300
+
+# Run `hp-plugin` in interactive mode.
+spawn hp-plugin -i
+
+# Wait for the first prompt and choose 'd' (i.e. 'download').
+expect "Enter option (d=download*, p=specify path, q=quit) ?"
+send "d\n"
+
+# Wait for the second prompt and confirm with 'y' (i.e. 'yes').
+expect "Do you accept the license terms for the plug-in (y=yes*, n=no, q=quit) ?"
+send "y\n"
+
+# Wait for completion.
+expect eof
