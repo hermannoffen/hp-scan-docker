@@ -93,3 +93,7 @@ To initiate a scan from your scanner's automatic document feeder (ADF), run `doc
 Optionally, you can put the output file to a sub-directory, which is automatically created if it doesn't exist already. To do this, run `docker compose exec scanner scan.sh <relative-path-of-sub-dir>`.
 
 Customize your scan params by using Docker's `--env` command line argument. See https://docs.docker.com/reference/cli/docker/container/exec/#env for more information.
+
+## Integration with _Paperless-ngx_
+
+You may have stumbled upon this project looking for a way to control your scanner for the purpose of feeding your documents to an instance of [_Paperless-ngx_](https://github.com/paperless-ngx/paperless-ngx). While it's easy to integrate _hp-scan-docker_ with _Paperless-ngx_ by targeting its [consumption directory](https://docs.paperless-ngx.com/configuration/#PAPERLESS_CONSUMPTION_DIR) and even [duplex collation](https://docs.paperless-ngx.com/configuration/#collate) is supported this way, you might be better of using the wonderful and a lot more comprehensive implementation of [_node-hp-scan-to_](https://github.com/manuc66/node-hp-scan-to). At least, I myself am. 😉 
